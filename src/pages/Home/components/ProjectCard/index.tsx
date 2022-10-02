@@ -11,6 +11,7 @@ interface ProjectCardProps {
   onTaskRemove: (taskId: number) => void;
   onChecked: (done: boolean, taskId: number) => void;
   onRemoveProject: (projectId: number) => void;
+  onEditProject: (projectId: number) => void;
 }
 
 export function ProjectCard({ 
@@ -18,7 +19,8 @@ export function ProjectCard({
   onAddTask, 
   onTaskRemove, 
   onChecked,
-  onRemoveProject 
+  onRemoveProject,
+  onEditProject
 }: ProjectCardProps) {
   const [taskName, setTaskName] = useState('');
   const hasTask = project.tasks.length > 0;
@@ -40,12 +42,16 @@ export function ProjectCard({
     onRemoveProject(project.id);
   }
 
+  function handleEditProject() {
+    onEditProject(project.id);
+  }
+
   return (
     <ProjectContainer>
       <header>
-        <span>{project.name}</span>
+        <span>{project.title}</span>
         <div>
-          <EditButton>
+          <EditButton onClick={handleEditProject}>
             <PencilSimpleLine />
           </EditButton>
           <TrashButton onClick={handleRemoveProject}>

@@ -26,12 +26,13 @@ export function TaskCard({ task, onTaskRemove, onChecked }: TaskCardProps) {
             id={task.id.toString()}
             defaultChecked={task.done}
             onChange={() => handleDoneTask()}
+            disabled={task.done}
           />
           <label htmlFor={task.id.toString()}></label>
         </Checkbox>
         <p>{task.name}</p>
       </div>
-      <button onClick={handleRemoveTask}>
+      <button onClick={handleRemoveTask} disabled={task.done}>
         <Trash size={16} />
       </button>
     </TaskContainer>

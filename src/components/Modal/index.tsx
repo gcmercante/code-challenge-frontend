@@ -1,15 +1,15 @@
 import { X } from "phosphor-react";
 import ReactModal from "react-modal";
-import { SignUpForm } from "../SignUpForm";
 
-interface SignUpModalProps {
+interface ModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
+  children: React.ReactNode
 }
 
-export function SignUpModal({isOpen, onRequestClose}: SignUpModalProps) {
+export function Modal({ isOpen, onRequestClose, children }: ModalProps) {
   return (
-    <ReactModal
+    <ReactModal 
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       overlayClassName="react-modal-overlay"
@@ -22,7 +22,8 @@ export function SignUpModal({isOpen, onRequestClose}: SignUpModalProps) {
       >
         <X size={24} />
       </button>
-      <SignUpForm />
+      
+      { children }
     </ReactModal>
   )
 }

@@ -9,6 +9,7 @@ interface HasProjectProps {
   onTaskRemove: (taskId: number) => void;
   onChecked: (done: boolean, taskId: number) => void;
   onRemoveProject: (projectId: number) => void;
+  onEditProject: (projectId: number) => void;
 }
 
 export function HasProject({ 
@@ -16,7 +17,8 @@ export function HasProject({
     onAddTask, 
     onTaskRemove, 
     onChecked, 
-    onRemoveProject 
+    onRemoveProject,
+    onEditProject
 }: HasProjectProps) {
   return (
     <Container>
@@ -29,6 +31,7 @@ export function HasProject({
             onTaskRemove={onTaskRemove}
             onChecked={onChecked}
             onRemoveProject={onRemoveProject}
+            onEditProject={onEditProject}
           />
         ))
       }

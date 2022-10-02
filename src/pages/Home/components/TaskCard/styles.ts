@@ -28,8 +28,12 @@ export const TaskContainer = styled.div`
     width: 1.5rem;
     height: 1.5rem;
 
-    &:hover {
+    &:not(:disabled):hover {
       color: red;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
     }
   }
 `
@@ -65,7 +69,7 @@ export const Checkbox = styled.div`
     width: 0.45rem;
   }
 
-  label:hover {
+  label:not(:disabled):hover {
     border: 2px solid blue;
     background-color: blue;
   }
@@ -79,9 +83,8 @@ export const Checkbox = styled.div`
     border-color: purple;
   }
 
-  input[type="checkbox"]:checked:hover + label {
-    background-color: purple;
-    border-color: var(--purple-300);
+  input[type="checkbox"]:disabled + label {
+    cursor: not-allowed;
   }
 
   input[type="checkbox"]:checked + label:after {
