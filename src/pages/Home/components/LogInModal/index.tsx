@@ -11,7 +11,9 @@ export function LoginModal({isOpen, onRequestClose}: LoginModalProps) {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
     >
-      <LogInForm />
+      <LogInForm
+        onRequestClose={onRequestClose}
+      />
     </Modal>
   )
 }

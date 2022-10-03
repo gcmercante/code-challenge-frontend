@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: #ddd;
+  background-color: #121214;
   margin-top: 4rem;
   border-radius: 6px;
   display: flex;
@@ -10,6 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   padding: 12rem 0;
   margin-bottom: 5rem;
+  color: #E1E1E6;
 
   span {
     font-size: 1.5rem;

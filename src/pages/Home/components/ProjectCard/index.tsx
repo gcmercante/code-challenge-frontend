@@ -1,49 +1,45 @@
 import { ListPlus, PencilSimpleLine, PlusCircle, Trash } from 'phosphor-react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
+import { ProjectContext } from '../../../../contexts/ProjectContext';
 import { Project } from '../../../../shared/interfaces/Project';
-import { Task } from '../../../../shared/interfaces/Task';
 import { TaskCard } from '../TaskCard';
 import { CreateTask, EditButton, NoTask, ProjectContainer, TrashButton } from './styles';
 
 interface ProjectCardProps {
   project: Project;
-  onAddTask: (projectId: number, task: Task) => void;
-  onTaskRemove: (taskId: number) => void;
-  onChecked: (done: boolean, taskId: number) => void;
-  onRemoveProject: (projectId: number) => void;
-  onEditProject: (projectId: number) => void;
+  onProjectEdit: (project: Project) => void;
 }
 
 export function ProjectCard({ 
-  project, 
-  onAddTask, 
-  onTaskRemove, 
-  onChecked,
-  onRemoveProject,
-  onEditProject
+  project,
+  onProjectEdit
 }: ProjectCardProps) {
+  const { onDeleteProject, onTaskCreate } = useContext(ProjectContext);
   const [taskName, setTaskName] = useState('');
   const hasTask = project.tasks.length > 0;
 
   function handleTaskSubmit(event: FormEvent) {
     event.preventDefault();
+    
+    if(project.id) {
+      const task = {
+        description: taskName
+      }
 
-    const task = {
-      id: Math.random() * (100 - 4) + 4,
-      name: taskName,
-      done: false
+      onTaskCreate(project.id, task)
     }
 
-    onAddTask(project.id, task);
     setTaskName('');
   }
 
   function handleRemoveProject() {
-    onRemoveProject(project.id);
+    if(project.id) {
+      onDeleteProject(project.id);
+    }
   }
 
   function handleEditProject() {
-    onEditProject(project.id);
+    onProjectEdit(project);
   }
 
   return (
@@ -69,8 +65,6 @@ export function ProjectCard({
                   <TaskCard 
                     task={task}
                     key={task.id}
-                    onTaskRemove={onTaskRemove}
-                    onChecked={onChecked}
                   />
                 ))
               }
@@ -86,7 +80,7 @@ export function ProjectCard({
       </div>
       <CreateTask onSubmit={handleTaskSubmit}>
         <input type="text" onChange={(e) => setTaskName(e.target.value)} value={taskName} />
-        <button type="submit"><PlusCircle size={32} /></button>
+        <button type="submit" disabled={taskName.length ? false : true}><PlusCircle size={32} /></button>
       </CreateTask>
     </ProjectContainer>
   )

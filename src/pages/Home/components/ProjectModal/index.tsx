@@ -1,33 +1,48 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { Modal } from "../../../../components/Modal";
+import { ProjectContext } from "../../../../contexts/ProjectContext";
 import { Project } from "../../../../shared/interfaces/Project";
+import { Task } from "../../../../shared/interfaces/Task";
 import { ProjectForm } from "./styles";
 
 interface ProjectModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  onUpsertProject: (project: Project) => void;
   edit?: boolean;
   project?: Project;
 }
 
-export function ProjectModal({ isOpen, onRequestClose, onUpsertProject, edit, project }: ProjectModalProps) {
+interface UpsertProjectType {
+  id?: string;
+  title: string;
+  tasks: Task[]
+}
+
+export function ProjectModal({ isOpen, onRequestClose, edit, project }: ProjectModalProps) {
   const [projectName, setProjectName] = useState('');
+  const { onCreateProject, onEditProject } = useContext(ProjectContext);
 
   function handleProjectSubmit(event: FormEvent) {
     event.preventDefault();
 
-    const upsertProject = {
-      id: Math.random() * (100 - 3) + 3,
+    const upsertProject: UpsertProjectType = {
       title: projectName,
-      tasks: [],
+      tasks: []
     }
 
     if(project?.id) {
-      upsertProject.id = project.id
+      upsertProject.id = project.id;
     }
 
-    onUpsertProject(upsertProject);
+    if(project?.tasks) {
+      upsertProject.tasks = project.tasks;
+    }
+
+    if(edit) {
+      onEditProject(upsertProject);
+    } else {
+      onCreateProject(upsertProject);
+    }
 
     onRequestClose();
     setProjectName('');
@@ -50,7 +65,7 @@ export function ProjectModal({ isOpen, onRequestClose, onUpsertProject, edit, pr
           value={projectName}
           onChange={(e) => setProjectName(e.target.value)}
         />
-        <button type="submit">
+        <button type="submit" disabled={projectName.length ? false : true}>
           {
             edit ? 'Edit project' : 'Create project'
           }

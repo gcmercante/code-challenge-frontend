@@ -25,6 +25,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     -webkit-font-smoothing: antialiased;
+    background-color: #202024;
   }
 
   button {
@@ -53,7 +54,8 @@ export const GlobalStyle = createGlobalStyle`
   .react-modal-content {
     width: 100%;
     max-width: 576px;
-    background: #d2d2d2;
+    background: #202024;
+    color: #E1E1E6;
     padding: 3rem;
     position: relative;
 
@@ -66,6 +68,7 @@ export const GlobalStyle = createGlobalStyle`
     top: 1.5rem;
     border: 0;
     background: transparent;
+    color: #E1E1E6;
 
     transition: filter 0.2s;
     &:hover {

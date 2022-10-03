@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const ProjectContainer = styled.div`
-  background-color: #ddd;
+  background-color: #323238;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   min-width: 45%;
+  max-width: 45%;
   border-radius: 6px;
 
   header {
@@ -19,6 +20,7 @@ export const ProjectContainer = styled.div`
       gap: 8px;
 
       button {
+        color: #E1E1E6;
         cursor: pointer;
         border: transparent;
         background-color: transparent;
@@ -31,12 +33,12 @@ export const ProjectContainer = styled.div`
 `
 export const TrashButton = styled.button`
   &:hover {
-    color: red;
+    color: #AA2834;
   }
 `
 export const EditButton = styled.button`
   &:hover {
-    color: blue;
+    color: #00875F;
   }
 `
 
@@ -61,11 +63,27 @@ export const CreateTask = styled.form`
     border-radius: 6px;
     padding: 0 0.5rem;
     font-size: 12px;
+    background-color: #121214;
+    color: #E1E1E6;
+
+    &:focus {
+      outline: none;
+      border: 2px solid #00875F;
+    }
   }
 
   button {
     border: transparent;
     background-color: transparent;
     cursor: pointer;
+    color: #00875F;
+
+    &:not(:disabled):hover {
+      color: #00B37E;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 `

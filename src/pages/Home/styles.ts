@@ -9,10 +9,17 @@ export const CreateButton = styled.div`
   justify-content: flex-end;
   padding: 0 10rem;
 
-  button{
+  button {
     border: none;
     border-radius: 6px;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     padding: 0.5rem 1rem;
+    background-color: #00875F;
+    color: #FFF;
+    font-weight: 600;
+
+    &:hover {
+      background-color: #00B37E;
+    }
   }
 `

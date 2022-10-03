@@ -12,7 +12,9 @@ export function SignUpModal({isOpen, onRequestClose}: SignUpModalProps) {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
     >
-      <SignUpForm />
+      <SignUpForm
+        onRequestClose={onRequestClose}
+      />
     </Modal>
   )
 }

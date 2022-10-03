@@ -1,23 +1,32 @@
 import styled from "styled-components";
 
 export const TaskContainer = styled.div`
-  background: #d2d2d2;
-  border-radius: 8px;
+  background: none;
+  border-radius: 6px;
+  border: 2px solid #015F43;
   padding: 0.75rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   gap: 0.75rem;
-  width: 100%;
+  max-width: 100%;
   margin-bottom: 1rem;
 
   & > div {
     display: flex;
     flex-direction: row;
     gap: 0.75rem;
+    overflow: auto;
+
+    span {
+      display: inline-block;
+      overflow-wrap: break-word;
+    }
   }
+
 
   button {
     background: transparent;
@@ -27,9 +36,10 @@ export const TaskContainer = styled.div`
     border-radius: 2px;
     width: 1.5rem;
     height: 1.5rem;
+    color: #E1E1E6;
 
     &:not(:disabled):hover {
-      color: red;
+      color: #AA2834;
     }
 
     &:disabled {
@@ -45,7 +55,7 @@ export const Checkbox = styled.div`
 
   label {
     background-color: transparent;
-    border: 2px solid blue;
+    border: 2px solid #00875F;
     border-radius: 999px;
     cursor: pointer;
     left: 0;
@@ -56,10 +66,10 @@ export const Checkbox = styled.div`
   }
 
   label:after {
-    border: 2px solid gray;
+    border: 2px solid #00875F;
     border-top: none;
     border-right: none;
-    content: "";
+    content: " ";
     height: 0.29rem;
     left: 0.125rem;
     opacity: 0;
@@ -70,8 +80,8 @@ export const Checkbox = styled.div`
   }
 
   label:not(:disabled):hover {
-    border: 2px solid blue;
-    background-color: blue;
+    border: 2px solid #00875F;
+    background-color: #00B37E;
   }
 
   input[type="checkbox"] {
@@ -79,8 +89,8 @@ export const Checkbox = styled.div`
   }
 
   input[type="checkbox"]:checked + label {
-    background-color: purple;
-    border-color: purple;
+    background-color: #323238;
+    border-color: #00875F;
   }
 
   input[type="checkbox"]:disabled + label {
